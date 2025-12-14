@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="WARN">
+<Configuration status="TRACE">
 
     <Properties>
         <Property name="LOG_PATTERN">
@@ -9,9 +9,9 @@
     </Properties>
 
     <Appenders>
-        <!-- <Console name="Console" target="SYSTEM_OUT">
+        <Console name="Console" target="SYSTEM_OUT">
             <PatternLayout pattern="${LOG_PATTERN}"/>
-        </Console> -->
+        </Console>
 
         <RollingFile name="FileAppender"
                      fileName="${LOG_DIR}/application.log"
@@ -29,7 +29,7 @@
     </Appenders>
 
     <Loggers>
-        <Logger name="com.example.demo" level="DEBUG" additivity="false">
+        <Logger name="com.rajesh.product" level="DEBUG" additivity="false">
             <AppenderRef ref="Console"/>
             <AppenderRef ref="FileAppender"/>
         </Logger>

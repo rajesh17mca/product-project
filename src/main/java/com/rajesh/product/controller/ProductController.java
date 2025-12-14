@@ -1,10 +1,10 @@
-package com.rajesh.controller;
+package com.rajesh.product.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import com.rajesh.model.Product;
+import com.rajesh.product.model.Product;
 
 import java.util.ArrayList;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.rajesh.model;
+package com.rajesh.product.model;
 
 public class Product {
     private Integer id;
