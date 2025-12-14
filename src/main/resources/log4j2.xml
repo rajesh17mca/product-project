@@ -10,15 +10,20 @@
 
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="${LOG_PATTERN}"/>
+            <PatternLayout pattern="${LOG_PATTERN} [URI: %X{uri}, URL: %X{url}]"/>
         </Console>
 
         <RollingFile name="FileAppender"
                      fileName="${LOG_DIR}/application.log"
                      filePattern="${LOG_DIR}/application-%d{yyyy-MM-dd}-%i.log.gz">
             <!-- <PatternLayout pattern="${LOG_PATTERN}"/> -->
-            <JSONLayout compact="true" eventEol="true" includeTimeMillis="true" properties="true">
+            <JSONLayout compact="true" eventEol="true" includeTimeMillis="true" properties="false" flattenProperties="true" completeOldLogEvent="true">
                 <KeyValuePair key="timestamp" value="$${date:yyyy-MM-dd'T'HH:mm:ss.SSSZ}" />
+                <KeyValuePair key="uri" value="$${ctx:uri:-}"/>
+                <KeyValuePair key="url" value="$${ctx:url:-}"/>
+                <KeyValuePair key="action" value="$${ctx:action:-}"/>
+                <KeyValuePair key="transactionId" value="$${ctx:transactionId:-}"/>
+                <KeyValuePair key="durationMs" value="$${ctx:durationMs:-}"/>
             </JSONLayout>
             <Policies>
                 <TimeBasedTriggeringPolicy />
