@@ -10,7 +10,15 @@
 
     <Appenders>
         <Console name="Console" target="SYSTEM_OUT">
-            <PatternLayout pattern="${LOG_PATTERN} [URI: %X{uri}, URL: %X{url}]"/>
+            <!-- <PatternLayout pattern="${LOG_PATTERN} [URI: %X{uri}, URL: %X{url}]"/> -->
+            <JSONLayout compact="true" eventEol="true" includeTimeMillis="true" properties="false" flattenProperties="true" completeOldLogEvent="true">
+                <KeyValuePair key="timestamp" value="$${date:yyyy-MM-dd'T'HH:mm:ss.SSSZ}" />
+                <KeyValuePair key="uri" value="$${ctx:uri:-}"/>
+                <KeyValuePair key="url" value="$${ctx:url:-}"/>
+                <KeyValuePair key="action" value="$${ctx:action:-}"/>
+                <KeyValuePair key="transactionId" value="$${ctx:transactionId:-}"/>
+                <KeyValuePair key="durationMs" value="$${ctx:durationMs:-}"/>
+            </JSONLayout>
         </Console>
 
         <RollingFile name="FileAppender"
